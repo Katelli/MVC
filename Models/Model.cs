@@ -13,7 +13,7 @@ public class VideoGame
 
     public override string ToString()
     {
-        return $"Title: {Title}. Release date: {Year}. Genre: {Genre}";
+        return $"Title: {Title}. Release year: {Year}. Genre: {Genre}";
     }
 }
 
