@@ -3,6 +3,18 @@ public class VideoGame
     public string Title { get; set; }
     public int Year { get; set; }
     public string Genre { get; set; }
+
+    public VideoGame(string title, int year, string genre)
+    {
+        Title = title;
+        Year = year;
+        Genre = genre;
+    }
+
+    public override string ToString()
+    {
+        return $"Title: {Title}. Release date: {Year}. Genre: {Genre}";
+    }
 }
 
 public class Model
