@@ -4,6 +4,12 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello, World!");
+        // Initialize Model, View & Controller
+        Model model = new Model();
+        View view = new View();
+        Controller controller = new Controller(model, view);
+
+        //      Todo list
+        // Run command
     }
 }
