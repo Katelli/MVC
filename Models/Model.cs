@@ -51,5 +51,30 @@ public class Model
             return false;
         }
     }
+
+    public bool UpdateGame(string title, string newTitle, int newYear, string newGenre)
+    {
+        var gameToUpdate = VideoGames.Find(g => g.Title.Equals(title, StringComparison.OrdinalIgnoreCase));
+        if(gameToUpdate != null)
+        {
+            if(newTitle != null)
+            {
+                gameToUpdate.Title = newTitle;
+            }
+            else if(newYear != gameToUpdate.Year)
+            {
+                gameToUpdate.Year = newYear;
+            }
+            else if (newGenre != null)
+            {
+                gameToUpdate.Genre = newGenre;
+            }
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
     
 }
