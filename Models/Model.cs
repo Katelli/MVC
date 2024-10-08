@@ -33,6 +33,11 @@ public class Model
         };
     }
 
+    public void AddGame(string title, int year, string genre)
+    {
+        VideoGames.Add(new VideoGame(title, year, genre));
+    }
+
     public bool RemoveGame(string title)
     {
         var gameToRemove = VideoGames.Find(g => g.Title.Equals(title, StringComparison.OrdinalIgnoreCase));
