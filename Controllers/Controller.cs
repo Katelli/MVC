@@ -1,12 +1,12 @@
 public class Controller
 {
-    private Model _model;
-    private View _view;
+    private Model model;
+    private View view;
 
     public Controller(Model model, View view)
     {
-        _model = model;
-        _view = view;
+        this.model = model;
+        this.view = view;
     }
 
     public void Run()
@@ -17,7 +17,7 @@ public class Controller
     // Add Game
     private void AddGame()
     {
-        Console.WriteLine("Enter the game's title/name");
+        Console.WriteLine("Enter the game's title");
         string? title = Console.ReadLine();
 
         while(string.IsNullOrEmpty(title))
@@ -45,10 +45,28 @@ public class Controller
             Console.WriteLine("Genre can not be empty");
             genre = Console.ReadLine();
         }
-
     }
+    // Remove game
+    private void RemoveGame()
+    {
+        Console.WriteLine("Please enter the title of the game you wish to remove");
+        string? title = Console.ReadLine();
 
-    // Remove Game
+        if (string.IsNullOrEmpty(title))
+        {
+            Console.WriteLine("Title can not be empty");
+            return;
+        }
+
+        if(model.RemoveGame(title))
+        {
+            Console.WriteLine($"Game {title} removed successfully.");
+        }
+        else
+        {
+            Console.WriteLine($"Game {title} not found");
+        }
+    }
 
     // Update Title, Year or Genre
 
