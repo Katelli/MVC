@@ -25,6 +25,9 @@ public class Model
         VideoGames = new List<VideoGame>
         {
             // Add games here
+            new VideoGame("The Planet Crafter", 2024, "Space survival, Terraformation"),
+            new VideoGame("Dragon Quest Builders 2", 2018, "Action, Role-playing, Sandbox"),
+            new VideoGame("Stardew Valley", 2016, "Farm life sim, Role-playing")
         };
     }
 }
