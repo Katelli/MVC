@@ -1,3 +1,5 @@
+using System.Security.Cryptography.X509Certificates;
+
 public class VideoGame
 {
     public string Title { get; set; }
@@ -30,4 +32,19 @@ public class Model
             new VideoGame("Stardew Valley", 2016, "Farm life sim, Role-playing")
         };
     }
+
+    public bool RemoveGame(string title)
+    {
+        var gameToRemove = VideoGames.Find(g => g.Title.Equals(title, StringComparison.OrdinalIgnoreCase));
+        if(gameToRemove != null)
+        {
+            VideoGames.Remove(gameToRemove);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
 }
