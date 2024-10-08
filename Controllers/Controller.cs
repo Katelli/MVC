@@ -13,7 +13,6 @@ public class Controller
     {
 
     }
-    //          Todo list
     // Add Game
     private void AddGame()
     {
@@ -69,5 +68,77 @@ public class Controller
     }
 
     // Update Title, Year or Genre
+    private void UpdateGame()
+    {
+        Console.WriteLine("Enter the title of the game to update");
+        string? title = Console.ReadLine();
+
+        if (string.IsNullOrEmpty(title))
+        {
+            Console.WriteLine("title can not be empty");
+            return;
+        }
+        else 
+        {
+            Console.WriteLine("What do you want to update?");
+            Console.WriteLine("Write 1 to update Title");
+            Console.WriteLine("Write 2 to update Release Year");
+            Console.WriteLine("Write 3 to update Genre");
+            
+            string? choice = Console.ReadLine();
+    
+            switch (choice)
+            {
+                case "1": 
+                    Console.WriteLine("Enter the new title for the game");
+                    
+                    string? newTitle = Console.ReadLine();
+                    
+                    if (string.IsNullOrEmpty(newTitle))
+                    {
+                        Console.WriteLine("New Title can not be empty");
+                        return;
+                    }
+                    break;
+    
+                case "2": 
+                    Console.WriteLine("Enter the new Release Year for the game");
+                    
+                    string? yearInput = Console.ReadLine();
+                    int newYear;
+    
+                    if(string.IsNullOrEmpty(yearInput))
+                    {
+                        Console.WriteLine("New Release Year can not be empty");
+                        return;
+                    }
+                    else 
+                    {
+                        while(!int.TryParse(yearInput, out newYear))
+                        {
+                            Console.WriteLine("There was an error with the data submitted, please input the year using numbers");
+                            yearInput = Console.ReadLine();
+                        }
+                    }
+                    break;
+    
+                case "3": 
+                    Console.WriteLine("Enter the new Genre for the game");
+    
+                    string? newGenre = Console.ReadLine();
+    
+                    if(string.IsNullOrEmpty(newGenre))
+                    {
+                        Console.WriteLine("New Release Year can not be empty");
+                        return;
+                    }
+                    break;
+    
+                default:
+                    Console.WriteLine("Invalid choice, please try again");
+                    break;
+            }
+        }
+    }
 
 }
