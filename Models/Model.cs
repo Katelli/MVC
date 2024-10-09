@@ -76,5 +76,10 @@ public class Model
             return false;
         }
     }
+
+    public List<VideoGame> GetGames()
+    {
+        return VideoGames;
+    }
     
 }
