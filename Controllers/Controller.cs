@@ -11,7 +11,37 @@ public class Controller
 
     public void Run()
     {
+        Console.WriteLine("Welcome to my game list");
+        Console.WriteLine("What do you want to do?");
+        Console.WriteLine("Write 1 to display the list of games");
+        Console.WriteLine("Write 2 to add a new game to the list");
+        Console.WriteLine("Write 3 to change the details of a game");
+        Console.WriteLine("Write 4 to remove a game");
 
+        string? choice = Console.ReadLine();
+
+        switch (choice)
+        {
+            case "1":
+                view.DisplayGames(model.GetGames());
+                break;
+            
+            case "2":
+                AddGame();
+                break;
+
+            case "3":
+                UpdateGame();
+                break;
+
+            case "4":
+                RemoveGame();
+                break;
+            
+            default:
+                Console.WriteLine("Invalid choice, please try again");
+                break;
+        }
     }
     // Add Game
     private void AddGame()
@@ -84,29 +114,29 @@ public class Controller
             Console.WriteLine("Write 1 to update Title");
             Console.WriteLine("Write 2 to update Release Year");
             Console.WriteLine("Write 3 to update Genre");
-            
+
             string? choice = Console.ReadLine();
-    
+
             switch (choice)
             {
                 case "1": 
                     Console.WriteLine("Enter the new title for the game");
-                    
+
                     string? newTitle = Console.ReadLine();
-                    
+
                     if (string.IsNullOrEmpty(newTitle))
                     {
                         Console.WriteLine("New Title can not be empty");
                         return;
                     }
                     break;
-    
+
                 case "2": 
                     Console.WriteLine("Enter the new Release Year for the game");
-                    
+
                     string? yearInput = Console.ReadLine();
                     int newYear;
-    
+
                     if(string.IsNullOrEmpty(yearInput))
                     {
                         Console.WriteLine("New Release Year can not be empty");
@@ -121,19 +151,19 @@ public class Controller
                         }
                     }
                     break;
-    
+
                 case "3": 
                     Console.WriteLine("Enter the new Genre for the game");
-    
+
                     string? newGenre = Console.ReadLine();
-    
+
                     if(string.IsNullOrEmpty(newGenre))
                     {
                         Console.WriteLine("New Release Year can not be empty");
                         return;
                     }
                     break;
-    
+
                 default:
                     Console.WriteLine("Invalid choice, please try again");
                     break;
