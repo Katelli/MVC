@@ -15,41 +15,39 @@ public class Controller
 
         while(!exit)
         {
-            Console.WriteLine("Welcome to my game list");
-            Console.WriteLine("What do you want to do?");
-            Console.WriteLine("Write 1 to display the list of games");
-            Console.WriteLine("Write 2 to add a new game to the list");
-            Console.WriteLine("Write 3 to change the details of a game");
-            Console.WriteLine("Write 4 to remove a game");
-            Console.WriteLine("Write 5 to exit the program");
+            view.ShowMenu();
 
             string? choice = Console.ReadLine();
 
             switch (choice)
             {
                 case "1":
+                    view.ShowMessage("\n");
                     view.DisplayGames(model.GetGames());
                     break;
 
                 case "2":
+                    view.ShowMessage("\n");
                     AddGame();
                     break;
 
                 case "3":
+                    view.ShowMessage("\n");
                     UpdateGame();
                     break;
 
                 case "4":
+                    view.ShowMessage("\n");
                     RemoveGame();
                     break;
 
                 case "5":
                     exit = true;
-                    Console.WriteLine("Exiting program...");
+                    view.ShowMessage("Exiting program...");
                     break;
 
                 default:
-                    Console.WriteLine("Invalid choice, please try again");
+                    view.ShowMessage("Invalid choice, please try again");
                     break;
             }
         }
@@ -57,131 +55,150 @@ public class Controller
     // Add Game
     private void AddGame()
     {
-        Console.WriteLine("Enter the game's title");
+        view.ShowMessage("\n");
+        view.ShowMessage("Enter the game's title");
         string? title = Console.ReadLine();
 
         while(string.IsNullOrEmpty(title))
         {
-            Console.WriteLine("Title can not be empty");
+            view.ShowMessage("Title can not be empty");
             title = Console.ReadLine();
         }
 
-
-        Console.WriteLine("Enter the game's release year");
+        view.ShowMessage("\n");
+        view.ShowMessage("Enter the game's release year");
 
         string? yearInput = Console.ReadLine();
         int year;
         while(!int.TryParse(yearInput, out year))
         {
-            Console.WriteLine("There was an error with the data submitted, please input the year using numbers");
+            view.ShowMessage("There was an error with the data submitted, please input the year using numbers");
             yearInput = Console.ReadLine();
         }
 
-
-        Console.WriteLine("Enter the game's genre");
+        view.ShowMessage("\n");
+        view.ShowMessage("Enter the game's genre");
         string? genre = Console.ReadLine();
         while(string.IsNullOrEmpty(genre))
         {
-            Console.WriteLine("Genre can not be empty");
+            view.ShowMessage("Genre can not be empty");
             genre = Console.ReadLine();
         }
 
         model.AddGame(title, year, genre);
+        view.ShowMessage("\n");
+        view.ShowMessage("Displaying updated list:");
+        view.DisplayGames(model.GetGames());
     }
     // Remove game
     private void RemoveGame()
     {
-        Console.WriteLine("Please enter the title of the game you wish to remove");
+        view.ShowMessage("Please enter the title of the game you wish to remove");
         string? title = Console.ReadLine();
 
         if (string.IsNullOrEmpty(title))
         {
-            Console.WriteLine("Title can not be empty");
+            view.ShowMessage("Title can not be empty");
             return;
         }
 
         if(model.RemoveGame(title))
         {
-            Console.WriteLine($"Game {title} removed successfully.");
+            view.ShowMessage("\n");
+            view.ShowMessage($"Game {title} removed successfully.");
         }
         else
         {
-            Console.WriteLine($"Game {title} not found");
+            view.ShowMessage("\n");
+            view.ShowMessage($"Game {title} not found");
         }
+        view.ShowMessage("Displaying updated list:");
+        view.DisplayGames(model.GetGames());
     }
 
     // Update Title, Year or Genre
     private void UpdateGame()
     {
-        Console.WriteLine("Enter the title of the game to update");
+        view.ShowMessage("\n");
+        view.ShowMessage("Enter the title of the game to update");
         string? title = Console.ReadLine();
 
         if (string.IsNullOrEmpty(title))
         {
-            Console.WriteLine("title can not be empty");
+            view.ShowMessage("title can not be empty");
             return;
         }
         else 
         {
-            Console.WriteLine("What do you want to update?");
-            Console.WriteLine("Write 1 to update Title");
-            Console.WriteLine("Write 2 to update Release Year");
-            Console.WriteLine("Write 3 to update Genre");
+            view.ShowUpdateMenu();
 
             string? choice = Console.ReadLine();
 
             switch (choice)
             {
                 case "1": 
-                    Console.WriteLine("Enter the new title for the game");
+                    view.ShowMessage("\n");
+                    view.ShowMessage("Enter the new title for the game");
 
                     string? newTitle = Console.ReadLine();
 
                     if (string.IsNullOrEmpty(newTitle))
                     {
-                        Console.WriteLine("New Title can not be empty");
+                        view.ShowMessage("New Title can not be empty");
                         return;
                     }
                     model.UpdateGameTitle(title, newTitle);
+                    view.ShowMessage("\n");
+                    view.ShowMessage("Displaying updated list:");
+                    view.DisplayGames(model.GetGames());
                     break;
 
                 case "2": 
-                    Console.WriteLine("Enter the new Release Year for the game");
+                    view.ShowMessage("\n");
+                    view.ShowMessage("Enter the new Release Year for the game");
 
                     string? yearInput = Console.ReadLine();
                     int newYear;
 
                     if(string.IsNullOrEmpty(yearInput))
                     {
-                        Console.WriteLine("New Release Year can not be empty");
+                        view.ShowMessage("New Release Year can not be empty");
                         return;
                     }
                     else 
                     {
                         while(!int.TryParse(yearInput, out newYear))
                         {
-                            Console.WriteLine("There was an error with the data submitted, please input the year using numbers");
+                            view.ShowMessage("There was an error with the data submitted, please input the year using numbers");
                             yearInput = Console.ReadLine();
                         }
                     }
                     model.UpdateGameYear(title, newYear);
+                    view.ShowMessage("\n");
+                    view.ShowMessage("Displaying updated list:");
+                    view.DisplayGames(model.GetGames());
                     break;
 
                 case "3": 
-                    Console.WriteLine("Enter the new Genre for the game");
+                    view.ShowMessage("\n");
+                    view.ShowMessage("Enter the new Genre for the game");
 
                     string? newGenre = Console.ReadLine();
 
                     if(string.IsNullOrEmpty(newGenre))
                     {
-                        Console.WriteLine("New Release Year can not be empty");
+                        view.ShowMessage("New Release Year can not be empty");
                         return;
                     }
                     model.UpdateGameGenre(title, newGenre);
+                    view.ShowMessage("\n");
+                    view.ShowMessage("Displaying updated list:");
+                    view.DisplayGames(model.GetGames());
                     break;
 
                 default:
-                    Console.WriteLine("Invalid choice, please try again");
+                    view.ShowMessage("\n");
+                    view.ShowMessage("Invalid choice, please try again");
                     break;
             }
         }
