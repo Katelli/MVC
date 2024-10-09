@@ -9,7 +9,7 @@ class Program
         View view = new View();
         Controller controller = new Controller(model, view);
 
-        //      Todo list
-        // Run command
+        // Start the program
+        controller.Run();
     }
 }
