@@ -11,36 +11,47 @@ public class Controller
 
     public void Run()
     {
-        Console.WriteLine("Welcome to my game list");
-        Console.WriteLine("What do you want to do?");
-        Console.WriteLine("Write 1 to display the list of games");
-        Console.WriteLine("Write 2 to add a new game to the list");
-        Console.WriteLine("Write 3 to change the details of a game");
-        Console.WriteLine("Write 4 to remove a game");
+        bool exit = false;
 
-        string? choice = Console.ReadLine();
-
-        switch (choice)
+        while(!exit)
         {
-            case "1":
-                view.DisplayGames(model.GetGames());
-                break;
-            
-            case "2":
-                AddGame();
-                break;
+            Console.WriteLine("Welcome to my game list");
+            Console.WriteLine("What do you want to do?");
+            Console.WriteLine("Write 1 to display the list of games");
+            Console.WriteLine("Write 2 to add a new game to the list");
+            Console.WriteLine("Write 3 to change the details of a game");
+            Console.WriteLine("Write 4 to remove a game");
+            Console.WriteLine("Write 5 to exit the program");
 
-            case "3":
-                UpdateGame();
-                break;
+            string? choice = Console.ReadLine();
 
-            case "4":
-                RemoveGame();
-                break;
-            
-            default:
-                Console.WriteLine("Invalid choice, please try again");
-                break;
+            switch (choice)
+            {
+                case "1":
+                    view.DisplayGames(model.GetGames());
+                    break;
+
+                case "2":
+                    AddGame();
+                    break;
+
+                case "3":
+                    UpdateGame();
+                    break;
+
+                case "4":
+                    RemoveGame();
+                    break;
+
+                case "5":
+                    exit = true;
+                    Console.WriteLine("Exiting program...");
+                    break;
+
+                default:
+                    Console.WriteLine("Invalid choice, please try again");
+                    break;
+            }
         }
     }
     // Add Game
@@ -74,6 +85,8 @@ public class Controller
             Console.WriteLine("Genre can not be empty");
             genre = Console.ReadLine();
         }
+
+        model.AddGame(title, year, genre);
     }
     // Remove game
     private void RemoveGame()
@@ -129,6 +142,7 @@ public class Controller
                         Console.WriteLine("New Title can not be empty");
                         return;
                     }
+                    model.UpdateGameTitle(title, newTitle);
                     break;
 
                 case "2": 
@@ -150,6 +164,7 @@ public class Controller
                             yearInput = Console.ReadLine();
                         }
                     }
+                    model.UpdateGameYear(title, newYear);
                     break;
 
                 case "3": 
@@ -162,6 +177,7 @@ public class Controller
                         Console.WriteLine("New Release Year can not be empty");
                         return;
                     }
+                    model.UpdateGameGenre(title, newGenre);
                     break;
 
                 default:
