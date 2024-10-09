@@ -1,5 +1,3 @@
-using System.Security.Cryptography.X509Certificates;
-
 public class VideoGame
 {
     public string Title { get; set; }
@@ -52,26 +50,43 @@ public class Model
         }
     }
 
-    public bool UpdateGame(string title, string newTitle, int newYear, string newGenre)
+    public bool UpdateGameTitle(string title, string newTitle)
     {
         var gameToUpdate = VideoGames.Find(g => g.Title.Equals(title, StringComparison.OrdinalIgnoreCase));
         if(gameToUpdate != null)
         {
-            if(newTitle != null)
-            {
-                gameToUpdate.Title = newTitle;
-            }
-            else if(newYear != gameToUpdate.Year)
-            {
-                gameToUpdate.Year = newYear;
-            }
-            else if (newGenre != null)
-            {
-                gameToUpdate.Genre = newGenre;
-            }
+            gameToUpdate.Title = newTitle;
+            return true;
+        }
+        else 
+        {
+            return false;
+        }
+    }
+
+    public bool UpdateGameYear(string title, int newYear)
+    {
+        var gameToUpdate = VideoGames.Find(g => g.Title.Equals(title, StringComparison.OrdinalIgnoreCase));
+        if(gameToUpdate != null)
+        {
+            gameToUpdate.Year = newYear;
             return true;
         }
         else
+        {
+            return false;
+        }
+    }
+
+    public bool UpdateGameGenre(string title, string newGenre)
+    {
+        var gameToUpdate = VideoGames.Find(g => g.Title.Equals(title, StringComparison.OrdinalIgnoreCase));
+        if(gameToUpdate != null)
+        {
+            gameToUpdate.Genre = newGenre;
+            return true;
+        }
+        else 
         {
             return false;
         }
